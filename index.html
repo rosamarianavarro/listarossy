@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Listarossy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/fontawesome/css/fontawesome-all.css">
+    
+    <!--Bootstrap css-->
+    
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!--Nuestros opropios estilos css-->
+    <link rel="stylesheet" href="css/estilos.css">
+    
+    <script>
+    
+    function Cosa(nombre,cantidad){
+        
+        this.nombre = nombre;
+        this.cantidad = cantidad;
+        
+    } //Cosa   
+        
+    
+    var lista = new Array();
+    lista[0] = new Cosa("Atún en latas" , 2);
+    lista[1] = new Cosa("Cerveza" , 6);
+    lista[2] = new Cosa("Pollo" , 3);
+
+    function muestraLista(){
+        var strHTML = '<h1>Lista de compra</h1>';
+        
+        strHTML +=  '<ul>';
+        
+        for(var i = 0; i < lista.length; i++){
+            
+            strHTML += '<li>'; 
+            
+            strHTML += '<span class="cosaNombre">' + lista[i].nombre +'</span>';
+            
+            strHTML += '<span class="cosaCantidad">' + lista[i].cantidad +'</span>';
+            
+            strHTML += '<span class="quitar"><a href="#" onclick="borrar(' + i +  ')" ><i class="far fa-trash-alt"></i></a></span>';
+            
+            strHTML += '</li>'; 
+            
+        }
+        
+        
+        strHTML +=  '</ul>';
+        
+        
+        
+        
+        //aqui montamos nuestro strHTML dentro del div app
+        document.getElementById('app').innerHTML = strHTML;
+        
+    }//fct muestraLista
+        
+    function borrar(cual){
+
+        var arrTmp = new Array();
+        
+        for(var i = 0; i<lista.length;i++){
+            
+            if(i != cual){
+                arrTmp.push( lista[i] );
+            }
+            
+        }//for
+        
+        lista = arrTmp;
+        
+        
+        muestraLista();
+    }
+        
+        
+    </script>
+
+</head>
+<body onload="muestraLista()">
+    <div class="container">
+        <div class="row rmn-center text-center">
+            <div id="app"></div>
+        </div>
+    </div>
+   
+    <!-- importamos jquery -->
+    <script src="js/jquery-3.2.1.slim.min.js"></script>
+    
+    <!-- importamos popper -->
+    <script src="js/popper.min.js"></script>
+       
+    <!-- importamos bootstrap js -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
